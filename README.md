@@ -29,7 +29,7 @@
 ## Proper syntax for creating a new migration:
 > From Root of the solution
 ```bash
-dotnet ef migrations add Init \
+dotnet ef migrations add AddUsers \
   --project src/Infrastructure \
   --startup-project src/Api
 ```

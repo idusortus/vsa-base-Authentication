@@ -21,12 +21,6 @@ try
     builder.Host.UseSerilog((context, services, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services));
     builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
-    // // TODO: Refactor into DependencyInjection
-    // builder.Services.AddHttpClient<DogApiService>(httpclient =>
-    // {
-    //     httpclient.BaseAddress = new Uri("https://dogapi.dog/");//TODO: What's a better way to store this? Appsettings?
-    // });
-
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.

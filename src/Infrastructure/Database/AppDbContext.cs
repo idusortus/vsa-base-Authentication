@@ -1,5 +1,6 @@
 using Application.Abstractions;
 using Domain.Quotes;
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Database;
@@ -9,6 +10,7 @@ public class AppDbContext : DbContext, IAppDbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     { }
 
+    public DbSet<User> Users { get; set; }
     public DbSet<Quote> Quotes { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

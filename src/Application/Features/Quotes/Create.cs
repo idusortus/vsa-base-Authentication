@@ -21,7 +21,7 @@ internal sealed class CreateQuoteHandler(IAppDbContext context)
     }
 }
 
-public sealed class CreateQuoteValidator : AbstractValidator<CreateQuoteCommand>
+internal sealed class CreateQuoteValidator : AbstractValidator<CreateQuoteCommand>
 {
     public CreateQuoteValidator()
     {
