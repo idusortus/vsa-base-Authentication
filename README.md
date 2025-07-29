@@ -37,30 +37,14 @@ dotnet ef migrations add AddUsers \
 ```bash
 dotnet ef database update --project src/Infrastructure/ --startup-project src/Api/
 ```
-
-### Condensed Feature Command/Query Files
-- Delete
-  - public sealed record DeleteXXXCommand(id/guid) : IRequest<Result<optional:TResult>>
-  - public sealed class DeleteXXXHandler(context) : IRequestHandler<DeleteXXXCommand, Result<optional:TResult>
-    - Handle()
-      - return Result.Success(), Result.Failure()
-  - public class DeleteXXXValidator : AbstractValidator<DeleteXXXCommand>
-    - public DeleteXXXValidator() { Rules }
-
-  - internal sealed class DeleteXXXEndpoint : IEndpoint
-    - MapEndpoint()
-      - app.MapDelete(...) (ISender handler, int/guid id, cancellationtoken ct)
-        - var result = await Handler.Send(new DeleteXXXCommand(id), ct)
-        - return result.Match(Results.NoContent{-other options exist-}, CustomResults.Problem)
-
-- Create
-  - public sealed record CreateXXXCommand(details) : IRequest<Result<id/guid>>
-  - public sealed class CreateXXXCommand(context) : IRequestHandler<CreateXXXCommand, Result<int/guid>>
-    - Handle() 
-      - return Result.Success(), Result.Failure
-  - public sealed class CreateXXXValidator : AbstractValidator<CreateXXXCommand>
-    - public CreateXXXValidator() { Rules }
-
+---
+#### Keep Secrets Local!
+- .NET Secret Manager
+  - Run from your project launch folder/composition root (Api in this case)
+```bash
+dotnet user-secrets init
+dotnet user-secrets set "Authentication:Google:ClientSecret" "YOUR_GOOGLE_CLIENT_SECRET"
+```
 ---
 ### API Endpoint Response Conventions
 

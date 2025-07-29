@@ -20,9 +20,10 @@ internal sealed class CreateQuoteEndpoint : IEndpoint
             var command = new CreateQuoteCommand(request.Author, request.Content);
             Result<int> result = await sender.Send(command, ct);
             return result.Match(
-                value => Results.CreatedAtRoute("GetQuoteById", new {id=value}),
+                value => Results.CreatedAtRoute("GetQuoteById", new { id = value }),
                 CustomResults.Problem);
         })
-        .WithTags(Tags.Quotes);
+        .WithTags(Tags.Quotes)
+        .RequireAuthorization();
     }
 }
