@@ -38,12 +38,19 @@ dotnet ef migrations add AddUsers \
 dotnet ef database update --project src/Infrastructure/ --startup-project src/Api/
 ```
 ---
-#### Keep Secrets Local!
+### Keep Secrets Local!
 - .NET Secret Manager
   - Run from your project launch folder/composition root (Api in this case)
 ```bash
 dotnet user-secrets init
 dotnet user-secrets set "Authentication:Google:ClientSecret" "YOUR_GOOGLE_CLIENT_SECRET"
+```
+
+:question: Screw it up? Soft reset to a prior commit.
+- git reset --soft COMMITID will move history back to the specified commit but will **not** change local file status.
+```bash
+git log --online
+git reset --soft ccee696
 ```
 ---
 ### API Endpoint Response Conventions
